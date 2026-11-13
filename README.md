@@ -2,7 +2,7 @@
 
 Code, results and web calculator for the manuscript
 
-> Kılınçkaya MF. *Why DOAC dosing by eGFR departs from the label: a simulation of Cockcroft–Gault, CKD-EPI and EKFC under EU and US labels, checked against published cohorts.* (submitted)
+> Kilinckaya MF. *Why DOAC dosing by eGFR departs from the label: a simulation of Cockcroft–Gault, CKD-EPI and EKFC under EU and US labels, checked against published cohorts.* (submitted)
 
 The analysis asks, for apixaban, dabigatran, edoxaban and rivaroxaban, how often and in which direction the dose changes when the laboratory's eGFR (CKD-EPI 2009, CKD-EPI 2021 or EKFC; indexed or de-indexed to mL/min) is used instead of the Cockcroft–Gault (CG) creatinine clearance on which the EU (SmPC) and US (USPI) labels are based. No patient data are used.
 
