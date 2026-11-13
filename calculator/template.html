@@ -86,7 +86,7 @@ footer p{margin:0}
         <button type="button" id="us" aria-pressed="false">US PI</button>
       </div>
     </div>
-    <p class="hint">Example loaded: woman, 85 y, 55 kg, creatinine 90 µmol/L.</p>
+    <p class="hint" id="exhint">Example loaded: woman, 85 y, 55 kg, creatinine 90 µmol/L.</p>
   </form>
 </section>
 <div style="display:grid;gap:20px">
@@ -128,6 +128,8 @@ footer p{margin:0}
     var p=read();
     if(![p.age,p.weight,p.height,p.scr].every(function(x){return isFinite(x)&&x>0})){
       $("sum").innerHTML='<p class="hint">Enter age, weight, height and creatinine to see results.</p>';$("rf").innerHTML="";$("dz").innerHTML="";return;}
+    var ex=(p.female&&p.age===85&&p.weight===55&&p.height===160&&Math.abs(p.scr-90)<1e-9&&!p.pgp&&!p.verapamil);
+    $("exhint").textContent=(ex?"Example loaded: ":"Showing: ")+(p.female?"woman":"man")+", "+p.age+" y, "+p.weight+" kg, "+p.height+" cm, creatinine "+$("scr").value+" "+($("unit").value==="mgdl"?"mg/dL":"µmol/L")+(p.pgp?", P-gp inhibitor":"")+(p.verapamil?", verapamil":"")+".";
     var r=DOAC.doses(p,region), e=r.estimates, L=DOAC.LABELS[region];
     $("sum").innerHTML='<div><b>'+fmt(e.CG)+'</b><span>Cockcroft–Gault, mL/min</span></div>'+
       '<div><b>'+fmt(e.CKDEPI21)+'</b><span>CKD-EPI 2021, mL/min/1.73 m²</span></div>'+

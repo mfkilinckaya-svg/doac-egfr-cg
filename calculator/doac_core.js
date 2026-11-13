@@ -105,6 +105,6 @@
 
   var api = { cg: cg, ckdepi2009: ckdepi2009, ckdepi2021: ckdepi2021, ekfc: ekfc, ekfcQ: ekfcQ,
               bsaDuBois: bsaDuBois, bsaMosteller: bsaMosteller, deindex: deindex,
-              EU: EU, US: US, LABELS: LABELS, estimates: estimates, doses: doses, VERSION: "1.0.0" };
+              EU: EU, US: US, LABELS: LABELS, estimates: estimates, doses: doses, VERSION: "1.0.1" };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.DOAC = api;
 })(this);
