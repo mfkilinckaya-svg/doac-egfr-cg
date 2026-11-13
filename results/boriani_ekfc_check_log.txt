@@ -1,0 +1,5 @@
+CKDEPI09: stage I 16.8, II 49.1, IIIa 23.4, IIIb 10.0, IV/V 0.8
+CKDEPI21: stage I 25.0, II 47.4, IIIa 20.0, IIIb 7.1, IV/V 0.4
+EKFC: stage I 7.3, II 51.0, IIIa 27.5, IIIb 13.1, IV/V 1.1
+CG: stage I 29.1, II 41.3, IIIa 19.8, IIIb 8.9, IV/V 1.0
+published: EKFC stage II 52.21; CG stage II 37.58, stage I 30.19; CKD-EPI (calibration target) I 15.3 II 50.0 IIIa 20.3 IIIb 10.6 IV/V 3.8

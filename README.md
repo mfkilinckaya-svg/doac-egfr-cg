@@ -19,6 +19,7 @@ The analysis asks, for apixaban, dabigatran, edoxaban and rivaroxaban, how often
 | `contsim.py` | Continuous-sampling populations matched to the published cohorts; comparison with published discordance; estimator table; age–weight correlation sensitivity | Fig. 2 data, Table 3, Table S5 |
 | `contsim_extra.py` | Additional numbers quoted in the text (CG stage check, interacting drugs, Mosteller vs DuBois) | Results text |
 | `villain_check.py` | Additional check of EKFC against Villain et al. (non-indexed EKFC, 7%) | Results text, limitations |
+| `boriani_ekfc_check.py` | Uncalibrated check of the EKFC stage distribution in the European scenario (Boriani et al.) | Results text |
 | `figure_validation.py` | Draws Fig. 2 (Bland–Altman mean difference, limits of agreement, Lin's CCC) | Fig. 2 |
 | `calculator/doac_core.js` | Independent JavaScript implementation of all equations and dose rules (v1.0.1) | web calculator |
 | `calculator/template.html`, `build_calculator.py`, `index.html` | Single-file web calculator (`index.html` is built from the template) | web calculator |
