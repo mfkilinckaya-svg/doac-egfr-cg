@@ -48,7 +48,7 @@ Random seeds are fixed, so the outputs in `results/` are reproduced exactly.
 
 ## Web calculator
 
-Open `calculator/index.html` in any browser (no installation, no data leave the browser). It shows, for one patient, CG and each eGFR estimate and the resulting dose under the EU and US labels. It is a research tool, not a medical device: dosing follows the product label and clinical judgement.
+Online: **https://mfkilinckaya-svg.github.io/doac-egfr-cg/calculator/** — or open `calculator/index.html` in any browser (no installation, no data leave the browser). It shows, for one patient, CG and each eGFR estimate and the resulting dose under the EU and US labels. It is a research tool, not a medical device: dosing follows the product label and clinical judgement.
 
 ## Conventions
 
