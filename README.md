@@ -1,5 +1,5 @@
 # DOAC dosing by eGFR versus Cockcroft–Gault
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24191622.svg)](https://doi.org/10.5281/zenodo.24191622)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24192843.svg)](https://doi.org/10.5281/zenodo.24192843)
 
 
 Code, results and web calculator for the manuscript
@@ -60,7 +60,7 @@ Online: **https://mfkilinckaya-svg.github.io/doac-egfr-cg/calculator/** — or o
 
 ## Citation
 
-See `CITATION.cff`. Archived release (v1.0.1): https://doi.org/10.5281/zenodo.24191622
+See `CITATION.cff`. Archived release (v1.0.2): https://doi.org/10.5281/zenodo.24192843
 
 ## Licence
 

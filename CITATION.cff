@@ -1,10 +1,10 @@
 cff-version: 1.2.0
 message: "If you use this code or calculator, please cite it as below."
 title: "DOAC dosing by eGFR versus Cockcroft–Gault: simulation code and web calculator"
-version: 1.0.1
+version: 1.0.2
 date-released: 2026-11-13
 license: MIT
-doi: 10.5281/zenodo.24191622
+doi: 10.5281/zenodo.24192843
 repository-code: "https://github.com/mfkilinckaya-svg/doac-egfr-cg"
 authors:
   - family-names: "Kilinckaya"
