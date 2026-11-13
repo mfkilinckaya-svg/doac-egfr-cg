@@ -1,0 +1,41 @@
+rho,est,subgroup,sim
+0.0,CKDEPI09,all,19.0
+0.0,CKDEPI09,≥50 kg & <75 y,9.9
+0.0,CKDEPI09,<50 kg,43.8
+0.0,CKDEPI09,≥75 y,25.9
+0.0,CKDEPI09,<50 kg & ≥75 y,53.3
+0.0,EKFC_abs,all,10.7
+0.0,EKFC_abs,≥50 kg & <75 y,6.4
+0.0,EKFC_abs,<50 kg,20.8
+0.0,EKFC_abs,≥75 y,14.2
+0.0,EKFC_abs,<50 kg & ≥75 y,25.0
+-0.2,CKDEPI09,all,19.7
+-0.2,CKDEPI09,≥50 kg & <75 y,10.0
+-0.2,CKDEPI09,<50 kg,46.3
+-0.2,CKDEPI09,≥75 y,28.9
+-0.2,CKDEPI09,<50 kg & ≥75 y,55.4
+-0.2,EKFC_abs,all,11.1
+-0.2,EKFC_abs,≥50 kg & <75 y,6.5
+-0.2,EKFC_abs,<50 kg,22.1
+-0.2,EKFC_abs,≥75 y,15.8
+-0.2,EKFC_abs,<50 kg & ≥75 y,26.3
+-0.3,CKDEPI09,all,20.0
+-0.3,CKDEPI09,≥50 kg & <75 y,10.0
+-0.3,CKDEPI09,<50 kg,47.4
+-0.3,CKDEPI09,≥75 y,30.4
+-0.3,CKDEPI09,<50 kg & ≥75 y,55.8
+-0.3,EKFC_abs,all,11.2
+-0.3,EKFC_abs,≥50 kg & <75 y,6.5
+-0.3,EKFC_abs,<50 kg,22.4
+-0.3,EKFC_abs,≥75 y,16.5
+-0.3,EKFC_abs,<50 kg & ≥75 y,26.6
+-0.4,CKDEPI09,all,20.2
+-0.4,CKDEPI09,≥50 kg & <75 y,10.0
+-0.4,CKDEPI09,<50 kg,48.5
+-0.4,CKDEPI09,≥75 y,31.7
+-0.4,CKDEPI09,<50 kg & ≥75 y,56.2
+-0.4,EKFC_abs,all,11.3
+-0.4,EKFC_abs,≥50 kg & <75 y,6.5
+-0.4,EKFC_abs,<50 kg,23.0
+-0.4,EKFC_abs,≥75 y,17.1
+-0.4,EKFC_abs,<50 kg & ≥75 y,26.9

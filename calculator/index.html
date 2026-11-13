@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DOAC Dose by CrCl or eGFR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout: inputs column left, results right; stacks on phones. Clinical-lab report feel. */
+  --bg:#f6f7f8; --panel:#ffffff; --ink:#1c2328; --muted:#5d6872; --line:#d9dee3; --accent:#1f5f8b;
+  --hi:#b3261e; --hi-bg:#fbeceb; --lo:#1f5f8b; --lo-bg:#e8f0f7; --ok-bg:#eef3ee; --ok:#2f6b3a;
+  --display:"Source Serif 4", Georgia, serif; --body:"IBM Plex Sans", system-ui, sans-serif; --mono:"IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#14191d; --panel:#1c2227; --ink:#e6eaee; --muted:#9aa6b0; --line:#2e373e; --accent:#7fb3d8;
+  --hi:#f2a097; --hi-bg:#3a2321; --lo:#8fbfe3; --lo-bg:#1e2e3b; --ok-bg:#1f2c22; --ok:#9fd0a8; color-scheme:dark; }}
+:root[data-theme="dark"]{
+  --bg:#14191d; --panel:#1c2227; --ink:#e6eaee; --muted:#9aa6b0; --line:#2e373e; --accent:#7fb3d8;
+  --hi:#f2a097; --hi-bg:#3a2321; --lo:#8fbfe3; --lo-bg:#1e2e3b; --ok-bg:#1f2c22; --ok:#9fd0a8; color-scheme:dark; }
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--body)}
+main{max-width:1180px;margin:0 auto;padding:24px 20px 40px;display:grid;gap:20px}
+header h1{font:600 1.65rem/1.2 var(--display);margin:0 0 6px;text-wrap:balance}
+header p{margin:0;color:var(--muted);max-width:70ch}
+.grid{display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start}
+@media (max-width:820px){.grid{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px}
+.panel h2{font:600 .78rem/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+form{display:grid;gap:12px}
+label{display:grid;gap:4px;font-weight:500;font-size:.9rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input[type=number],select{font:500 1rem var(--mono);padding:7px 9px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);width:100%}
+input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.check{display:flex;gap:8px;align-items:center;font-weight:400}
+.seg{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{flex:1;font:500 .9rem var(--body);padding:7px;border:0;background:var(--bg);color:var(--ink);cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--accent);color:var(--panel)}
+.hint{color:var(--muted);font-size:.8rem}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.78rem;color:var(--muted);font-weight:600}
+td.num{font-family:var(--mono)}
+td.ref{background:var(--ok-bg)}
+.chip{display:inline-block;font:600 .7rem/1 var(--body);padding:3px 6px;border-radius:999px;margin-top:4px;letter-spacing:.02em}
+.chip.hi{background:var(--hi-bg);color:var(--hi)} .chip.lo{background:var(--lo-bg);color:var(--lo)} .chip.ch{background:var(--hi-bg);color:var(--hi)}
+.cell-hi{box-shadow:inset 3px 0 0 var(--hi)} .cell-lo{box-shadow:inset 3px 0 0 var(--lo)}
+.summary{display:flex;flex-wrap:wrap;gap:10px}
+.summary div{flex:1 1 140px;border:1px solid var(--line);border-radius:6px;padding:10px}
+.summary b{display:block;font:500 1.4rem var(--mono)}
+.summary span{color:var(--muted);font-size:.8rem}
+footer{color:var(--muted);font-size:.82rem;max-width:90ch;display:grid;gap:6px}
+footer p{margin:0}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>DOAC dose by Cockcroft–Gault or by laboratory eGFR</h1>
+  <p>Enter one patient. The calculator applies the label dose rule for atrial fibrillation to the Cockcroft–Gault creatinine clearance (the label reference) and to each eGFR, and flags where the eGFR would change the dose.</p>
+</header>
+<div class="grid">
+<section class="panel" aria-labelledby="in-h">
+  <h2 id="in-h">Patient</h2>
+  <form id="f">
+    <div class="row">
+      <label for="age">Age (years)<input id="age" type="number" min="18" max="110" step="1" value="85"></label>
+      <label for="sex">Sex<select id="sex"><option value="F" selected>Female</option><option value="M">Male</option></select></label>
+    </div>
+    <div class="row">
+      <label for="wt">Weight (kg)<input id="wt" type="number" min="30" max="250" step="0.5" value="55"></label>
+      <label for="ht">Height (cm)<input id="ht" type="number" min="120" max="220" step="1" value="160"></label>
+    </div>
+    <div class="row">
+      <label for="scr">Creatinine<input id="scr" type="number" min="20" max="1500" step="any" value="90"></label>
+      <label for="unit">Unit<select id="unit"><option value="umol" selected>µmol/L</option><option value="mgdl">mg/dL</option></select></label>
+    </div>
+    <label class="check" for="pgp"><input id="pgp" type="checkbox"> P-gp inhibitor (ciclosporin, dronedarone, erythromycin, ketoconazole)</label>
+    <label class="check" for="vera"><input id="vera" type="checkbox"> Verapamil</label>
+    <div>
+      <div class="hint" id="reg-l" style="margin-bottom:4px">Label</div>
+      <div class="seg" role="group" aria-labelledby="reg-l">
+        <button type="button" id="eu" aria-pressed="true">EU SmPC</button>
+        <button type="button" id="us" aria-pressed="false">US PI</button>
+      </div>
+    </div>
+    <p class="hint">Example loaded: woman, 85 y, 55 kg, creatinine 90 µmol/L.</p>
+  </form>
+</section>
+<div style="display:grid;gap:20px">
+<section class="panel" aria-labelledby="rf-h">
+  <h2 id="rf-h">Kidney function</h2>
+  <div class="summary" id="sum"></div>
+  <div class="scroll" style="margin-top:12px"><table id="rf"></table></div>
+</section>
+<section class="panel" aria-labelledby="d-h">
+  <h2 id="d-h">Dose by each estimate</h2>
+  <div class="scroll"><table id="dz"></table></div>
+  <p class="hint" style="margin:10px 0 0">Shaded column: dose by Cockcroft–Gault, as in the label. A red mark means the eGFR gives a higher dose than the label rule; blue, a lower dose. Edoxaban P-gp and dabigatran verapamil rules apply to the EU label only.</p>
+</section>
+</div>
+</div>
+<footer>
+  <p><b>Research and teaching tool.</b> It does not replace the product information or clinical judgement, and it ignores bleeding risk, hepatic function and other interactions.</p>
+  <p>Equations: Cockcroft–Gault 1976 (actual body weight); CKD-EPI 2009 (race term omitted); CKD-EPI 2021; EKFC (Pottel et al., Ann Intern Med 2021). Non-indexed eGFR = eGFR × BSA/1.73, BSA by DuBois. Dose rules: EU SmPC section 4.2 and US prescribing information for apixaban, dabigatran, edoxaban and rivaroxaban, stroke prevention in non-valvular AF.</p>
+  <p>Verification: the calculation code was checked against an independent Python implementation in 50 507 virtual patients, including cases placed exactly on every dose threshold, with no disagreement in any dose class, and against hand-calculated reference values. Version <span id="ver"></span>.</p>
+</footer>
+</main>
+<script>
+/* DOAC dose by Cockcroft-Gault vs eGFR — core logic (shared by web calculator and tests).
+ * Independent JavaScript re-implementation of egfr.py + doac_rules.py.
+ * Creatinine in µmol/L; 1 mg/dL = 88.4 µmol/L. */
+(function (root) {
+  "use strict";
+  var U = 88.4;
+
+  function cg(age, wt, scr, female) {            // mL/min, actual body weight
+    var v = (140 - age) * wt / (72 * (scr / U));
+    return female ? v * 0.85 : v;
+  }
+  function ckdepi2009(age, scr, female) {
+    var s = scr / U, k = female ? 0.7 : 0.9, a = female ? -0.329 : -0.411, r = s / k;
+    var v = 141 * Math.pow(Math.min(r, 1), a) * Math.pow(Math.max(r, 1), -1.209) * Math.pow(0.993, age);
+    return female ? v * 1.018 : v;
+  }
+  function ckdepi2021(age, scr, female) {
+    var s = scr / U, k = female ? 0.7 : 0.9, a = female ? -0.241 : -0.302, r = s / k;
+    var v = 142 * Math.pow(Math.min(r, 1), a) * Math.pow(Math.max(r, 1), -1.200) * Math.pow(0.9938, age);
+    return female ? v * 1.012 : v;
+  }
+  function ekfcQ(age, female) {                   // Pottel 2021 Fig. 1: formula 2–25 y, fixed >25 y
+    if (age <= 25) {
+      var l = female
+        ? 3.080 + 0.177 * age - 0.223 * Math.log(age) - 0.00596 * age * age + 0.0000686 * age * age * age
+        : 3.200 + 0.259 * age - 0.543 * Math.log(age) - 0.00763 * age * age + 0.0000790 * age * age * age;
+      return Math.exp(l);
+    }
+    return female ? 62 : 80;
+  }
+  function ekfc(age, scr, female) {
+    var r = scr / ekfcQ(age, female);
+    var v = 107.3 * Math.pow(r, r < 1 ? -0.322 : -1.132);
+    return age > 40 ? v * Math.pow(0.990, age - 40) : v;
+  }
+  function bsaDuBois(wt, ht) { return 0.007184 * Math.pow(wt, 0.425) * Math.pow(ht, 0.725); }
+  function bsaMosteller(wt, ht) { return Math.sqrt(wt * ht / 3600); }
+  function deindex(v, bsa) { return v * bsa / 1.73; }
+
+  /* Dose levels: 0 not recommended / CI, 1 reduced, 1.5 dabigatran individual choice,
+     2 standard, 3 (US edoxaban) not used because CrCl > 95. */
+  var EU = {
+    rivaroxaban: function (rf) { return rf < 15 ? 0 : rf < 50 ? 1 : 2; },
+    edoxaban: function (rf, p) {
+      var l = rf < 15 ? 0 : rf <= 50 ? 1 : 2;
+      return (l === 2 && (p.weight <= 60 || p.pgp)) ? 1 : l;
+    },
+    dabigatran: function (rf, p) {
+      if (rf < 30) return 0;
+      if (p.age >= 80 || p.verapamil) return 1;
+      if (rf <= 50 || (p.age >= 75 && p.age < 80)) return 1.5;
+      return 2;
+    },
+    apixaban: function (rf, p) {
+      if (rf < 15) return 0;
+      if (rf < 30) return 1;
+      var n = (p.age >= 80 ? 1 : 0) + (p.weight <= 60 ? 1 : 0) + (p.scr >= 133 ? 1 : 0);
+      return n >= 2 ? 1 : 2;
+    }
+  };
+  var US = {
+    rivaroxaban: function (rf) { return rf <= 50 ? 1 : 2; },
+    edoxaban: function (rf) { return rf < 15 ? 0 : rf <= 50 ? 1 : rf <= 95 ? 2 : 3; },
+    dabigatran: function (rf) { return rf < 15 ? 0 : rf <= 30 ? 1 : 2; },
+    apixaban: function (rf, p) {
+      var n = (p.age >= 80 ? 1 : 0) + (p.weight <= 60 ? 1 : 0) + (p.scr >= 133 ? 1 : 0);
+      return n >= 2 ? 1 : 2;
+    }
+  };
+  var LABELS = {
+    EU: {
+      rivaroxaban: { 0: "Not recommended", 1: "15 mg once daily", 2: "20 mg once daily" },
+      edoxaban: { 0: "Not recommended", 1: "30 mg once daily", 2: "60 mg once daily" },
+      dabigatran: { 0: "Contraindicated", 1: "110 mg twice daily", 1.5: "150 or 110 mg twice daily (individual)", 2: "150 mg twice daily" },
+      apixaban: { 0: "Not recommended", 1: "2.5 mg twice daily", 2: "5 mg twice daily" }
+    },
+    US: {
+      rivaroxaban: { 1: "15 mg once daily", 2: "20 mg once daily" },
+      edoxaban: { 0: "Not recommended", 1: "30 mg once daily", 2: "60 mg once daily", 3: "Do not use (CrCl > 95)" },
+      dabigatran: { 0: "No recommendation", 1: "75 mg twice daily", 2: "150 mg twice daily" },
+      apixaban: { 1: "2.5 mg twice daily", 2: "5 mg twice daily" }
+    }
+  };
+
+  function estimates(p) {
+    var f = !!p.female, bD = bsaDuBois(p.weight, p.height), bM = bsaMosteller(p.weight, p.height);
+    var e = { CG: cg(p.age, p.weight, p.scr, f), BSA_DuBois: bD, BSA_Mosteller: bM };
+    [["CKDEPI09", ckdepi2009], ["CKDEPI21", ckdepi2021], ["EKFC", ekfc]].forEach(function (x) {
+      var v = x[1](p.age, p.scr, f);
+      e[x[0]] = v; e[x[0] + "_abs"] = deindex(v, bD); e[x[0] + "_absM"] = deindex(v, bM);
+    });
+    return e;
+  }
+  function doses(p, region) {
+    var rules = region === "US" ? US : EU, e = estimates(p), out = {};
+    Object.keys(rules).forEach(function (drug) {
+      out[drug] = {};
+      Object.keys(e).forEach(function (k) {
+        if (k.indexOf("BSA") === 0) return;
+        out[drug][k] = rules[drug](e[k], p);
+      });
+    });
+    return { estimates: e, doses: out };
+  }
+
+  var api = { cg: cg, ckdepi2009: ckdepi2009, ckdepi2021: ckdepi2021, ekfc: ekfc, ekfcQ: ekfcQ,
+              bsaDuBois: bsaDuBois, bsaMosteller: bsaMosteller, deindex: deindex,
+              EU: EU, US: US, LABELS: LABELS, estimates: estimates, doses: doses, VERSION: "1.0.0" };
+  if (typeof module !== "undefined" && module.exports) module.exports = api; else root.DOAC = api;
+})(this);
+
+</script>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)}, region="EU";
+  var COLS=[["CG","Cockcroft–Gault","mL/min"],["CKDEPI09","CKD-EPI 2009","mL/min/1.73 m²"],["CKDEPI21","CKD-EPI 2021","mL/min/1.73 m²"],["EKFC","EKFC","mL/min/1.73 m²"],
+            ["CKDEPI21_abs","CKD-EPI 2021, non-indexed","mL/min"],["EKFC_abs","EKFC, non-indexed","mL/min"]];
+  var DRUGS=[["apixaban","Apixaban"],["dabigatran","Dabigatran"],["edoxaban","Edoxaban"],["rivaroxaban","Rivaroxaban"]];
+  $("ver").textContent=DOAC.VERSION;
+  function read(){
+    var s=parseFloat($("scr").value); if($("unit").value==="mgdl") s=s*88.4;
+    return {age:parseFloat($("age").value),female:$("sex").value==="F",weight:parseFloat($("wt").value),
+            height:parseFloat($("ht").value),scr:s,pgp:$("pgp").checked,verapamil:$("vera").checked};
+  }
+  function fmt(v){return isFinite(v)?v.toFixed(0):"–"}
+  function render(){
+    var p=read();
+    if(![p.age,p.weight,p.height,p.scr].every(function(x){return isFinite(x)&&x>0})){
+      $("sum").innerHTML='<p class="hint">Enter age, weight, height and creatinine to see results.</p>';$("rf").innerHTML="";$("dz").innerHTML="";return;}
+    var r=DOAC.doses(p,region), e=r.estimates, L=DOAC.LABELS[region];
+    $("sum").innerHTML='<div><b>'+fmt(e.CG)+'</b><span>Cockcroft–Gault, mL/min</span></div>'+
+      '<div><b>'+fmt(e.CKDEPI21)+'</b><span>CKD-EPI 2021, mL/min/1.73 m²</span></div>'+
+      '<div><b>'+fmt(e.EKFC)+'</b><span>EKFC, mL/min/1.73 m²</span></div>'+
+      '<div><b>'+e.BSA_DuBois.toFixed(2)+'</b><span>BSA (DuBois), m²</span></div>';
+    var h='<thead><tr><th>Estimate</th><th>Value</th><th>Unit</th><th>Difference from CG</th></tr></thead><tbody>';
+    COLS.forEach(function(c){var v=e[c[0]], d=v-e.CG;
+      h+='<tr><td>'+c[1]+'</td><td class="num">'+v.toFixed(1)+'</td><td>'+c[2]+'</td><td class="num">'+(c[0]==="CG"?"reference":(d>0?"+":"")+d.toFixed(1))+'</td></tr>';});
+    $("rf").innerHTML=h+'</tbody>';
+    var t='<thead><tr><th>Drug</th>'+COLS.map(function(c){return '<th>'+c[1]+'</th>'}).join("")+'</tr></thead><tbody>';
+    DRUGS.forEach(function(dr){
+      var ref=r.doses[dr[0]].CG; t+='<tr><th scope="row" style="color:var(--ink)">'+dr[1]+'</th>';
+      COLS.forEach(function(c){
+        var lv=r.doses[dr[0]][c[0]], cls="", chip="";
+        if(c[0]==="CG") cls="ref";
+        else if(lv!==ref){
+          if(region==="US"&&dr[0]==="edoxaban"&&(lv===3||ref===3)){cls="cell-hi";chip='<span class="chip ch">use changes</span>';}
+          else if(lv>ref){cls="cell-hi";chip='<span class="chip hi">higher dose</span>';}
+          else {cls="cell-lo";chip='<span class="chip lo">lower dose</span>';}
+        }
+        t+='<td class="'+cls+'">'+L[dr[0]][lv]+(chip?'<br>'+chip:'')+'</td>';});
+      t+='</tr>';});
+    $("dz").innerHTML=t+'</tbody>';
+  }
+  function setRegion(x){region=x;$("eu").setAttribute("aria-pressed",x==="EU");$("us").setAttribute("aria-pressed",x==="US");render();}
+  $("eu").addEventListener("click",function(){setRegion("EU")});$("us").addEventListener("click",function(){setRegion("US")});
+  var prevUnit="umol";
+  $("unit").addEventListener("change",function(){var v=parseFloat($("scr").value);if(isFinite(v)){
+      if(prevUnit==="umol"&&this.value==="mgdl") $("scr").value=(v/88.4).toFixed(2);
+      if(prevUnit==="mgdl"&&this.value==="umol") $("scr").value=(v*88.4).toFixed(0);}
+    prevUnit=this.value;render();});
+  $("f").addEventListener("input",render);$("f").addEventListener("submit",function(ev){ev.preventDefault()});
+  render();
+})();
+</script>
+</body>
+</html>

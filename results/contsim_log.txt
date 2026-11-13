@@ -1,0 +1,73 @@
+Ammar calibration: men Scr 90.0, sdlog 0.25; Scr mean 84.9 SD 23.6 (target 84.9, 23.9)
+Calibrated: Yao men Scr 91.0; Chan men Scr 100.0; Boriani men Scr 95.0, sdlog 0.28, stages [ 0.8 10.  23.4 49.1 16.8] (target [ 3.8 10.6 20.3 50.  15.3])
+Manzano overall Scr median 83.6 (published 84)
+Ammar check (not calibrated): CG mean 97.0 SD 40.4 (published 98.4, 47.7); CKD-EPI 2021 77.6 (78.2), NI 91.9 (94.0); CKD-EPI 2009 73.5 (74.8), NI 87.0 (89.9)
+sim_grid: mean diff -0.54, SD 2.52, LoA -5.5 to 4.4, mean |d| 1.85
+sim_cont: mean diff 0.20, SD 2.11, LoA -3.9 to 4.3, mean |d| 1.82
+cohort
+Ammar 2026                2.17
+Chan 2022                 0.33
+Manzano-Fernández 2015   -1.15
+Yao 2023 (ORBIT-AF II)    1.40
+                cohort                                     label  pub  sim_grid  sim_cont
+Manzano-Fernández 2015                           dabigatran, all 10.0      10.5       8.9
+Manzano-Fernández 2015                         dabigatran, CG<60 26.5      26.0      26.9
+Manzano-Fernández 2015                         dabigatran, ≥75 y 15.1      13.4      12.2
+Manzano-Fernández 2015                          rivaroxaban, all  8.5       9.2       7.9
+Manzano-Fernández 2015                        rivaroxaban, CG<60 22.4      22.5      23.9
+Manzano-Fernández 2015                        rivaroxaban, ≥75 y 13.2      11.3      10.7
+Manzano-Fernández 2015                             apixaban, all  1.5       0.6       0.5
+Manzano-Fernández 2015                           apixaban, CG<60  4.1       1.5       1.4
+Manzano-Fernández 2015                           apixaban, ≥75 y  1.9       0.6       0.5
+Yao 2023 (ORBIT-AF II)                          rivaroxaban, any 12.0      14.5      14.1
+Yao 2023 (ORBIT-AF II)                   rivaroxaban, lower dose  6.5       9.8       9.4
+Yao 2023 (ORBIT-AF II)                  rivaroxaban, higher dose  5.5       4.6       4.7
+             Chan 2022                                       all 19.0      17.6      19.0
+             Chan 2022                            ≥50 kg & <75 y  8.0      12.0      10.0
+             Chan 2022                                    <50 kg 42.7      42.1      43.8
+             Chan 2022                                     ≥75 y 29.8      22.6      25.8
+             Chan 2022                            <50 kg & ≥75 y 50.9      49.6      53.5
+            Ammar 2026              rivaroxaban, CKD-EPI 2021 NI  4.8       NaN       6.6
+            Ammar 2026 rivaroxaban, CKD-EPI 2021 NI, higher dose  4.2       NaN       5.9
+            Ammar 2026         rivaroxaban, CKD-EPI 2021 indexed  7.6       NaN      10.3
+            Ammar 2026              rivaroxaban, CKD-EPI 2009 NI  3.8       NaN       6.2
+Cheng calibration: Scr men 102.5, sdlog 0.350; CG 56.3 ± 25.8
+equation stage  pub  sim_grid  sim_cont
+ CKD-EPI   ≥60 86.1      86.6      86.7
+ CKD-EPI 45–59 69.6      66.4      66.2
+ CKD-EPI 30–44 55.1      51.9      52.2
+ CKD-EPI 15–29 36.0      37.3      38.5
+    EKFC   ≥60 74.3      75.1      75.1
+    EKFC 45–59 58.8      57.0      56.8
+    EKFC 30–44 46.3      44.6      44.8
+    EKFC 15–29 30.5      32.1      33.0
+Cheng cont: mean diff -0.44, LoA -5.0 to 4.2, mean |d| 2.03
+               population        drug    CKDEPI09    CKDEPI21        EKFC CKDEPI21_abs   EKFC_abs
+Manzano-Fernández (Spain) rivaroxaban  13.0 (5.9)  12.1 (7.8)  14.9 (3.6)    8.8 (7.7)  7.8 (2.7)
+Manzano-Fernández (Spain)    edoxaban   9.9 (2.8)   8.6 (4.4)  12.5 (1.2)    6.3 (5.1)  6.5 (1.4)
+Manzano-Fernández (Spain)  dabigatran   7.3 (2.5)   6.1 (3.2)   8.6 (2.0)    3.7 (2.7)  4.6 (1.2)
+   Yao, ORBIT-AF II (USA) rivaroxaban  13.0 (4.1)  11.2 (5.4)  15.1 (2.8)    7.2 (5.8)  6.8 (2.7)
+   Yao, ORBIT-AF II (USA)    edoxaban  10.6 (1.8)   8.6 (2.7)  13.2 (0.9)    5.0 (3.6)  5.4 (1.3)
+   Yao, ORBIT-AF II (USA)  dabigatran   8.4 (2.2)   6.9 (2.7)   9.7 (1.8)    3.7 (2.6)  4.3 (1.4)
+            Chan (Taiwan) rivaroxaban 19.0 (16.7) 21.5 (20.2) 16.2 (13.2)  17.2 (16.4) 10.7 (8.7)
+            Chan (Taiwan)    edoxaban   6.8 (4.5)   7.6 (6.3)   5.8 (2.9)    7.3 (6.6)  4.8 (2.9)
+            Chan (Taiwan)  dabigatran 17.6 (14.5) 19.0 (17.2) 16.4 (12.7)  14.6 (13.5) 10.8 (8.0)
+              Ammar (USA) rivaroxaban  12.0 (5.3)  10.3 (6.2)  14.4 (4.2)    6.6 (5.9)  5.9 (3.4)
+              Ammar (USA)    edoxaban   8.1 (1.3)   6.1 (1.9)  10.9 (0.7)    3.2 (2.5)  3.6 (1.0)
+              Ammar (USA)  dabigatran   7.4 (3.3)   6.2 (3.6)   8.4 (3.1)    3.8 (3.3)  3.9 (2.5)
+         Boriani (Europe) rivaroxaban  12.5 (5.3)  11.4 (7.1)  13.9 (3.5)    8.6 (7.6)  6.8 (3.2)
+         Boriani (Europe)    edoxaban   9.6 (2.5)   8.2 (3.8)  11.5 (1.2)    6.0 (5.1)  5.3 (1.8)
+         Boriani (Europe)  dabigatran   8.5 (2.7)   7.1 (3.5)   9.6 (2.2)    4.2 (3.3)  4.5 (1.6)
+Boriani continuous: weight ≤60 kg 9.1%, <50 kg 1.9%, Scr <40 0.5%, CG>95 24.2%
+rho                      -0.4  -0.3  -0.2   0.0
+est      subgroup                              
+CKDEPI09 <50 kg          48.5  47.4  46.3  43.8
+         <50 kg & ≥75 y  56.2  55.8  55.4  53.3
+         all             20.2  20.0  19.7  19.0
+         ≥50 kg & <75 y  10.0  10.0  10.0   9.9
+         ≥75 y           31.7  30.4  28.9  25.9
+EKFC_abs <50 kg          23.0  22.4  22.1  20.8
+         <50 kg & ≥75 y  26.9  26.6  26.3  25.0
+         all             11.3  11.2  11.1  10.7
+         ≥50 kg & <75 y   6.5   6.5   6.5   6.4
+         ≥75 y           17.1  16.5  15.8  14.2

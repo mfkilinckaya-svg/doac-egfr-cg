@@ -1,0 +1,19 @@
+cohort,label,pub,sim
+Manzano-Fernández 2015,"dabigatran, all",10.0,10.5
+Manzano-Fernández 2015,"dabigatran, CG<60",26.5,26.0
+Manzano-Fernández 2015,"dabigatran, ≥75 y",15.1,13.4
+Manzano-Fernández 2015,"rivaroxaban, all",8.5,9.2
+Manzano-Fernández 2015,"rivaroxaban, CG<60",22.4,22.5
+Manzano-Fernández 2015,"rivaroxaban, ≥75 y",13.2,11.3
+Manzano-Fernández 2015,"apixaban, all",1.5,0.6
+Manzano-Fernández 2015,"apixaban, CG<60",4.1,1.5
+Manzano-Fernández 2015,"apixaban, ≥75 y",1.9,0.6
+Yao 2023 (ORBIT-AF II),"rivaroxaban, any",12.0,14.5
+Yao 2023 (ORBIT-AF II),"rivaroxaban, lower dose",6.5,9.8
+Yao 2023 (ORBIT-AF II),"rivaroxaban, higher dose",5.5,4.6
+Chan 2022,all,19.0,17.6
+Chan 2022,≥50 kg & <75 y,8.0,12.0
+Chan 2022,<50 kg,42.7,42.1
+Chan 2022,≥75 y,29.8,22.6
+Chan 2022,<50 kg & ≥75 y,50.9,49.6
+Ammar 2026,"rivaroxaban, all",4.8,6.1

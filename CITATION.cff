@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this code or calculator, please cite it as below."
+title: "DOAC dosing by eGFR versus Cockcroft–Gault: simulation code and web calculator"
+version: 1.0.0
+date-released: 2026-11-13
+license: MIT
+repository-code: "https://github.com/mfkilinckaya-svg/doac-egfr-cg"
+authors:
+  - family-names: "Kılınçkaya"
+    given-names: "Muhammed Fevzi"
+    orcid: "https://orcid.org/0000-0002-0815-5467"
+    affiliation: "Department of Medical Biochemistry, Helse Møre og Romsdal HF, Norway"
+keywords:
+  - direct oral anticoagulants
+  - Cockcroft-Gault
+  - eGFR
+  - EKFC
+  - CKD-EPI
+  - drug dosing

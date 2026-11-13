@@ -1,0 +1,22 @@
+cohort,label,pub,sim_grid,sim_cont
+Manzano-Fernández 2015,"dabigatran, all",10.0,10.5,8.852599999999999
+Manzano-Fernández 2015,"dabigatran, CG<60",26.5,26.0,26.87871275550774
+Manzano-Fernández 2015,"dabigatran, ≥75 y",15.1,13.4,12.204809025036406
+Manzano-Fernández 2015,"rivaroxaban, all",8.5,9.2,7.9052
+Manzano-Fernández 2015,"rivaroxaban, CG<60",22.4,22.5,23.92441180597783
+Manzano-Fernández 2015,"rivaroxaban, ≥75 y",13.2,11.3,10.653850202642245
+Manzano-Fernández 2015,"apixaban, all",1.5,0.6,0.4561
+Manzano-Fernández 2015,"apixaban, CG<60",4.1,1.5,1.4222679576531487
+Manzano-Fernández 2015,"apixaban, ≥75 y",1.9,0.6,0.5427917258803096
+Yao 2023 (ORBIT-AF II),"rivaroxaban, any",12.0,14.5,14.1065
+Yao 2023 (ORBIT-AF II),"rivaroxaban, lower dose",6.5,9.8,9.3859
+Yao 2023 (ORBIT-AF II),"rivaroxaban, higher dose",5.5,4.6,4.7206
+Chan 2022,all,19.0,17.6,18.990000000000002
+Chan 2022,≥50 kg & <75 y,8.0,12.0,9.953648135679225
+Chan 2022,<50 kg,42.7,42.1,43.84427805031988
+Chan 2022,≥75 y,29.8,22.6,25.801048223550794
+Chan 2022,<50 kg & ≥75 y,50.9,49.6,53.46443640747438
+Ammar 2026,"rivaroxaban, CKD-EPI 2021 NI",4.8,,6.591963547224687
+Ammar 2026,"rivaroxaban, CKD-EPI 2021 NI, higher dose",4.2,,5.9260763159973955
+Ammar 2026,"rivaroxaban, CKD-EPI 2021 indexed",7.6,,10.3236523984642
+Ammar 2026,"rivaroxaban, CKD-EPI 2009 NI",3.8,,6.228915987994427
