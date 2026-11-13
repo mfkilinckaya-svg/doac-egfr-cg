@@ -1,0 +1,7 @@
+calibration: men Scr 115.0, sdlog 0.32; CG quartiles [35.5 46.1 59.6] (published 36/45/60)
+check (not calibrated): CKD-EPI 2009 median 49.0 (published CKD-EPI cr 56), EKFC median 44.0 (published 50)
+EKFC_abs: discordance 6.5%
+CKDEPI09_abs: discordance 10.4%
+CKDEPI21_abs: discordance 13.8%
+
+[exited with code 0]
