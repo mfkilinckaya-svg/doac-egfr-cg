@@ -4,7 +4,7 @@ title: "DOAC dosing by eGFR versus Cockcroft–Gault: simulation code and web ca
 version: 1.0.1
 date-released: 2026-11-13
 license: MIT
-doi: 10.5281/zenodo.24191222
+doi: 10.5281/zenodo.24191622
 repository-code: "https://github.com/mfkilinckaya-svg/doac-egfr-cg"
 authors:
   - family-names: "Kilinckaya"
